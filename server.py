@@ -2,6 +2,7 @@
 
 import asyncio
 import websockets
+import os
 from json import loads, dumps
 
 async def reducer(websocket):
@@ -27,7 +28,7 @@ async def reducer(websocket):
         await websocket.send(dumps(current_item))
 
 async def main():
-    async with websockets.serve(reducer):
+    async with websockets.serve(reducer, port=os.getenv("PORT")):
         await asyncio.Future()  # run forever
 
 asyncio.run(main())
