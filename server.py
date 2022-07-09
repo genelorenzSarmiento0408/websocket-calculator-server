@@ -27,7 +27,7 @@ async def reducer(websocket):
         await websocket.send(dumps(current_item))
 
 async def main():
-    async with websockets.serve(reducer, "localhost", 8765):
+    async with websockets.serve(reducer):
         await asyncio.Future()  # run forever
 
 asyncio.run(main())
